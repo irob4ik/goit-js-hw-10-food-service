@@ -13,18 +13,12 @@ const refs = {
     themeSwitch: document.querySelector('#theme-switch-toggle'),
 };
 
-const savedData = localStorage.getItem('theme');
+const savedData = localStorage.getItem('theme') || Theme.LIGHT;
 
 // Set page theme
 
-if (savedData === null || Theme.LIGHT) {
-    refs.indexBody.classList.add(Theme.LIGHT);
-}
-
-if (savedData === Theme.DARK) {
-    refs.indexBody.classList.add(Theme.DARK);
-    refs.themeSwitch.checked = true;
-}
+refs.indexBody.classList.add(savedData);
+refs.themeSwitch.checked = savedData === Theme.DARK;
 
 // Theme switch
 
